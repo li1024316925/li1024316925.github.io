@@ -1,28 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>LLQ’s Blog</title>
-  
-  <link href="/atom.xml" rel="self"/>
-  
-  <link href="http://yoursite.com/"/>
-  <updated>2017-02-27T06:49:20.000Z</updated>
-  <id>http://yoursite.com/</id>
-  
-  <author>
-    <name>LLQ</name>
-    
-  </author>
-  
-  <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>test1</title>
-    <link href="http://yoursite.com/2017/02/27/test1/"/>
-    <id>http://yoursite.com/2017/02/27/test1/</id>
-    <published>2017-02-27T06:48:04.000Z</published>
-    <updated>2017-02-27T06:49:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Swift 刚学几天，以练手的心态改写以前一个 OC 的小项目，这里记录一些遇到的坑点。由于是初学者，各位大牛如果发现错误，欢迎指出。闲话不多说，下面就正式开始</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> test1 · LLQ’s Blog</title><meta name="description" content="test1 - LLQ"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="LLQ’s Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">test1</h1><div class="post-info">2017年2月27日</div><div class="post-content"><p>Swift 刚学几天，以练手的心态改写以前一个 OC 的小项目，这里记录一些遇到的坑点。由于是初学者，各位大牛如果发现错误，欢迎指出。闲话不多说，下面就正式开始</p>
 <h1 id="1-私有属性和方法"><a href="#1-私有属性和方法" class="headerlink" title="1.私有属性和方法"></a>1.私有属性和方法</h1><p>在 Swift 中，是没有私有属性的，也就是说，只要在同一个命名空间（后面会有介绍），我们都可以访问的到。但是Swift中是有有 private 关键字的，根据特点决定，如果编写 App 的话，直接用默认的就好了，就是啥也不用敲，如果编写 Framework，请认真思考流程，认真设计，外部接口要设置 public，而一些不想让别人看见的就可以用 private 或者 internal 修饰了</p>
 <h1 id="2-Swift中的宏定义"><a href="#2-Swift中的宏定义" class="headerlink" title="2.Swift中的宏定义"></a>2.Swift中的宏定义</h1><p>在Swift中是没有宏定义的，但是我们可以使用公用函数来替代宏，比如<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">func kTabBarWidth(<span class="class"><span class="keyword">object</span></span>: <span class="type">UITabBarController</span>) -&gt; <span class="type">CGFloat</span> &#123;<span class="keyword">return</span> <span class="class"><span class="keyword">object</span>.<span class="title">tabBar</span>.<span class="title">frame</span>.<span class="title">size</span>.<span class="title">width</span>&#125;</span></div><div class="line">func kTabBarHeight(<span class="class"><span class="keyword">object</span></span>: <span class="type">UITabBarController</span>) -&gt; <span class="type">CGFloat</span> &#123;<span class="keyword">return</span> <span class="class"><span class="keyword">object</span>.<span class="title">tabBar</span>.<span class="title">frame</span>.<span class="title">size</span>.<span class="title">height</span>&#125;</span></div><div class="line">func kButtonWidth(<span class="class"><span class="keyword">object</span></span>: <span class="type">UITabBarController</span>) -&gt; <span class="type">CGFloat</span> &#123;<span class="keyword">return</span> kTabBarWidth(<span class="class"><span class="keyword">object</span></span>: <span class="class"><span class="keyword">object</span>)<span class="title">/CGFloat</span>(<span class="params">(object.viewControllers?.count</span>)<span class="title">!</span>)&#125;</span></div></pre></td></tr></table></figure></p>
 <p>在公用函数中取不到的变量我们可以以参数的形式传入</p>
@@ -46,43 +22,4 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//添加监听</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addObserver</span><span class="params">()</span></span> -&gt; <span class="type">Void</span> &#123;</div><div class="line">        </div><div class="line">        <span class="comment">//添加indexCollectionView的监听</span></div><div class="line">        indexCollectionView?.addObserver(<span class="keyword">self</span>, forKeyPath: <span class="string">"currentIndex"</span>, options: <span class="type">NSKeyValueObservingOptions</span>.new, context: <span class="literal">nil</span>)</div><div class="line">        </div><div class="line">        <span class="comment">//添加posterCollectionView的监听</span></div><div class="line">        posterCollectionView?.addObserver(<span class="keyword">self</span>, forKeyPath: <span class="string">"currentIndex"</span>, options: <span class="type">NSKeyValueObservingOptions</span>.new, context: <span class="literal">nil</span>)</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//观察者方法</span></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">observeValue</span><span class="params">(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)</span></span> &#123;</div><div class="line">        </div><div class="line">        <span class="comment">//变化后的值</span></div><div class="line">        <span class="keyword">let</span> index = change?[<span class="type">NSKeyValueChangeKey</span>.newKey] <span class="keyword">as</span>! <span class="type">Int</span></div><div class="line">        </div><div class="line">        <span class="comment">//创建indexPath</span></div><div class="line">        <span class="keyword">let</span> indexPath = <span class="type">IndexPath</span>(item: index, section: <span class="number">0</span>)</div><div class="line">        </div><div class="line">        <span class="comment">//判断是否是currenIndex属性</span></div><div class="line">        <span class="keyword">guard</span> keyPath == <span class="string">"currentIndex"</span> <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span></div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//判断对象的类型</span></div><div class="line">        <span class="keyword">if</span> object <span class="keyword">is</span> <span class="type">PosterCollectionView</span> &#123;</div><div class="line">            </div><div class="line">            <span class="comment">//滑动到指定单元格</span></div><div class="line">            indexCollectionView?.scrollToItem(at: indexPath, at: <span class="type">UICollectionViewScrollPosition</span>.centeredHorizontally, animated: <span class="literal">true</span>)</div><div class="line">            </div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> object <span class="keyword">is</span> <span class="type">IndexCollectionView</span>&#123;</div><div class="line">            </div><div class="line">            <span class="comment">//滑动到指定单元格</span></div><div class="line">            posterCollectionView?.scrollToItem(at: indexPath, at: <span class="type">UICollectionViewScrollPosition</span>.centeredHorizontally, animated: <span class="literal">true</span>)</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//变换标题</span></div><div class="line">        titleLabel?.text = dataList?[index].titleCn</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//销毁</span></div><div class="line">    <span class="keyword">deinit</span> &#123;</div><div class="line">        <span class="comment">//移除观察者</span></div><div class="line">        indexCollectionView?.removeObserver(<span class="keyword">self</span>, forKeyPath: <span class="string">"currentIndex"</span>)</div><div class="line">        posterCollectionView?.removeObserver(<span class="keyword">self</span>, forKeyPath: <span class="string">"currentIndex"</span>)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>这里注意一定要在析构函数中移除监听<br>如果你还对 Swift 中的 KVO 感兴趣的话，可以看一下这篇文章<br><a href="http://www.jianshu.com/p/e036e53d240e" target="_blank" rel="external">Swift: KVO 注意事项和属性观察器</a></p>
 <p>在最后，放上小项目的地址，还是那句话，说再多也不如自己敲一敲<br><a href="https://github.com/li1024316925/Swift-TimeMovie" target="_blank" rel="external">时光电影Swift版初学小项目</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Swift 刚学几天，以练手的心态改写以前一个 OC 的小项目，这里记录一些遇到的坑点。由于是初学者，各位大牛如果发现错误，欢迎指出。闲话不多说，下面就正式开始&lt;/p&gt;
-&lt;h1 id=&quot;1-私有属性和方法&quot;&gt;&lt;a href=&quot;#1-私有属性和方法&quot; class=&quot;heade
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2017/02/27/hello-world/"/>
-    <id>http://yoursite.com/2017/02/27/hello-world/</id>
-    <published>2017-02-27T06:29:12.000Z</published>
-    <updated>2017-02-27T06:29:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-    
-    </summary>
-    
-    
-  </entry>
-  
-</feed>
+</div></article></div></main><footer><div class="paginator"><a href="/2017/02/27/hello-world/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2017 <a href="http://yoursite.com">LLQ</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
