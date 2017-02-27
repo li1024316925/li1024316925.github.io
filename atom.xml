@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-27T07:38:38.000Z</updated>
+  <updated>2017-02-27T07:42:59.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>通过拦截hitTest:withEvent方法，解决超出父视图的子视图不能接受点击事件的问题</title>
+    <link href="http://yoursite.com/2016/12/14/%E9%80%9A%E8%BF%87%E6%8B%A6%E6%88%AAhitTest-withEvent%E6%96%B9%E6%B3%95%EF%BC%8C%E8%A7%A3%E5%86%B3%E8%B6%85%E5%87%BA%E7%88%B6%E8%A7%86%E5%9B%BE%E7%9A%84%E5%AD%90%E8%A7%86%E5%9B%BE%E4%B8%8D%E8%83%BD%E6%8E%A5%E5%8F%97%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2016/12/14/通过拦截hitTest-withEvent方法，解决超出父视图的子视图不能接受点击事件的问题/</id>
+    <published>2016-12-14T13:46:46.000Z</published>
+    <updated>2017-02-27T07:42:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>由于项目需求，我需要在一个高度为50的控件上面创建一个下拉菜单，效果如下<br><img src="http://upload-images.jianshu.io/upload_images/1393645-7615f6291d98befb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshot.png"><br>当我做完之后发现，下拉菜单的下拉选择项不能点击<br><img src="http://upload-images.jianshu.io/upload_images/1393645-95c2565295819887.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshot.png"><br>这是因为我们的控件高度只有50，但是下拉菜单的高度超出了控件的大小，这样，我们就接受不到点击事件了<br>这边找了一个比较详细的图，来描述事件的分发<br><img src="http://upload-images.jianshu.io/upload_images/1393645-f33f808a87360846.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="226702-dd53b5a6df2f3ea5.png"><br>每个 view 都会有<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (UIView *)<span class="string">hitTest:</span>(CGPoint)point <span class="string">withEvent:</span>(UIEvent *)event&#123;</div><div class="line">    </div><div class="line">    UIView *view = [<span class="keyword">super</span> <span class="string">hitTest:</span>point <span class="string">withEvent:</span>event];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样一个方法<br>这个方法会判断当前点击的“点”是否在本 view 上，如果在本 view 上，就继续寻找本 view 的 Subview，还是通过此方法判断点击的“点”是否在 Subview 上，直到找完所有的 Subview，然后这个方法就会 return 这个最终的 Subview 并一层层的向上传递给 UIWindow，这样我们就拿到了屏幕上面最终响应的 view。</p>
+<p>回到我们最开始遇到的问题。</p>
+<p>由于我们下拉菜单超出了我们的自定义控件，当我们点击到下拉菜单时，从 UIWindow 开始通过 <figure class="highlight plain"><figcaption><span>方法向下寻找响应的 view，当查找到我们的自定义控件时，就会 return 了，因为我们点击的“点”已经超出了自定义控件，也就是说，这个“点”不在我们的自定义控件上，所以在自定义控件上面的下拉菜单无论如何也不会响应。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">所以，我们只要手动的去 return 我们的下拉菜单，手动的去连接起这个 响应 view 的链，我们的下拉菜单就能响应</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>(UIView <em>)getTargetView:(UIView </em>)view point:(CGPoint)point event:(UIEvent *)event<br>{</p>
+<p>  __block UIView *subView;</p>
+<p>  //逆序 由层级最低 也就是最上层的子视图开始<br>  [view.subviews enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(__kindof UIView <em> _Nonnull obj, NSUInteger idx, BOOL </em> _Nonnull stop) {</p>
+<pre><code>//point 从view 转到 obj中
+CGPoint hitPoint = [obj convertPoint:point fromView:view];
+//        NSLog(@&quot;%@ - %@&quot;,NSStringFromCGPoint(point),NSStringFromCGPoint(hitPoint));
+
+if([obj pointInside:hitPoint withEvent:event])//在当前视图范围内
+{
+    if(obj.subviews.count != 0)
+    {
+        //如果有子视图 递归
+        subView = [self getTargetView:obj point:hitPoint event:event];
+
+        if(!subView)
+        {
+            //如果没找到 提交当前视图
+            subView = obj;
+        }
+    }
+    else
+    {
+        subView = obj;
+    }
+
+    *stop = YES;
+}
+else//不在当前视图范围内
+{
+    if(obj.subviews.count != 0)
+    {
+        //如果有子视图 递归
+        subView = [self getTargetView:obj point:hitPoint event:event];
+    }
+}
+</code></pre><p>  }];</p>
+<p>  return subView;<br>}</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">这个方法的目的就是找到点击的“点”最终所在的 subview，然后 return。</div><div class="line"></div><div class="line">我们再回到我们的响应链断掉的地方，也就是自定义控件内的 ```hitTest``` 方法</div></pre></td></tr></table></figure>
+</li>
+<li><p>(UIView <em>)hitTest:(CGPoint)point withEvent:(UIEvent </em>)event{</p>
+<p>  UIView *view = [super hitTest:point withEvent:event];</p>
+<p>  //由于响应链在此处断开，我们就去手动寻找最终响应的子视图，传入本 view 遍历本 view 的子视图<br>  UIView *tempview = [self getTargetView:self point:point event:event];<br>  if (tempview) {</p>
+<pre><code>view = tempview;
+</code></pre><p>  }</p>
+<p>  return view;<br>}<br>```<br>手动找到点击的点所在的 subview，并在断开的地方 return，这样我们的下拉菜单就能响应点击了</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;由于项目需求，我需要在一个高度为50的控件上面创建一个下拉菜单，效果如下&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1393645-7615f6291d98befb.png?imageMogr2/a
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Swift3.0利用Runtime简单封装一个字典转模型</title>
