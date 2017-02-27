@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-27T07:11:39.000Z</updated>
+  <updated>2017-02-27T07:33:40.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>test1</title>
-    <link href="http://yoursite.com/2017/02/27/Swift3.0%E7%89%88%E6%97%B6%E5%85%89%E7%94%B5%E5%BD%B1%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2017/02/27/Swift3.0版时光电影项目笔记/</id>
-    <published>2017-02-27T06:48:04.000Z</published>
-    <updated>2017-02-27T07:11:39.000Z</updated>
+    <title>Swift3.0版时光电影项目笔记</title>
+    <link href="http://yoursite.com/2016/10/18/Swift3.0%E7%89%88%E6%97%B6%E5%85%89%E7%94%B5%E5%BD%B1%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2016/10/18/Swift3.0版时光电影项目笔记/</id>
+    <published>2016-10-18T05:03:04.000Z</published>
+    <updated>2017-02-27T07:33:40.000Z</updated>
     
     <content type="html"><![CDATA[<p>Swift 刚学几天，以练手的心态改写以前一个 OC 的小项目，这里记录一些遇到的坑点。由于是初学者，各位大牛如果发现错误，欢迎指出。闲话不多说，下面就正式开始</p>
 <h1 id="1-私有属性和方法"><a href="#1-私有属性和方法" class="headerlink" title="1.私有属性和方法"></a>1.私有属性和方法</h1><p>在 Swift 中，是没有私有属性的，也就是说，只要在同一个命名空间（后面会有介绍），我们都可以访问的到。但是Swift中是有有 private 关键字的，根据特点决定，如果编写 App 的话，直接用默认的就好了，就是啥也不用敲，如果编写 Framework，请认真思考流程，认真设计，外部接口要设置 public，而一些不想让别人看见的就可以用 private 或者 internal 修饰了</p>
