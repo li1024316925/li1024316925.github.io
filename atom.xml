@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-02T08:35:11.000Z</updated>
+  <updated>2017-03-09T04:03:15.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>UITableView行高自适应+缓存优化</title>
-    <link href="http://yoursite.com/2017/02/22/UITableView%E8%A1%8C%E9%AB%98%E8%87%AA%E9%80%82%E5%BA%94-%E7%BC%93%E5%AD%98%E4%BC%98%E5%8C%96/"/>
-    <id>http://yoursite.com/2017/02/22/UITableView行高自适应-缓存优化/</id>
+    <title>UITableView 行高自适应+缓存优化</title>
+    <link href="http://yoursite.com/2017/02/22/UITableView%20%E8%A1%8C%E9%AB%98%E8%87%AA%E9%80%82%E5%BA%94-%E7%BC%93%E5%AD%98%E4%BC%98%E5%8C%96/"/>
+    <id>http://yoursite.com/2017/02/22/UITableView 行高自适应-缓存优化/</id>
     <published>2017-02-22T08:53:36.000Z</published>
-    <updated>2017-03-02T08:35:11.000Z</updated>
+    <updated>2017-03-09T04:03:15.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>学习了 FDTemplateLayoutCell 后，我自己也写了一个 TableView 行高自适应加高度缓存的 Demo，本 Demo 研究实现了其中的最基本算高与缓存功能，仅供大家学习使用。</p>
@@ -68,14 +68,14 @@
   </entry>
   
   <entry>
-    <title>封装一个网络图片加载与缓存Category</title>
-    <link href="http://yoursite.com/2017/02/18/%E5%B0%81%E8%A3%85%E4%B8%80%E4%B8%AA%E7%BD%91%E7%BB%9C%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E4%B8%8E%E7%BC%93%E5%AD%98Category/"/>
-    <id>http://yoursite.com/2017/02/18/封装一个网络图片加载与缓存Category/</id>
+    <title>封装一个网络图片加载与缓存 Category</title>
+    <link href="http://yoursite.com/2017/02/18/%E5%B0%81%E8%A3%85%E4%B8%80%E4%B8%AA%E7%BD%91%E7%BB%9C%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E4%B8%8E%E7%BC%93%E5%AD%98%20Category/"/>
+    <id>http://yoursite.com/2017/02/18/封装一个网络图片加载与缓存 Category/</id>
     <published>2017-02-18T07:54:46.000Z</published>
-    <updated>2017-03-01T05:36:17.000Z</updated>
+    <updated>2017-03-09T04:02:15.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>又有好多天没写博客了，Markdown语法都快忘了….</p>
+<p>又有好多天没写博客了，Markdown 语法都快忘了….</p>
 <p><strong>步入正题，赶紧来看看我们今天要搞的事情</strong></p>
 </blockquote>
 <p><img src="http://upload-images.jianshu.io/upload_images/1393645-09995ecaf5360971.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/340" alt="偷偷告诉你，我们要搞事情啦.jpg"></p>
@@ -100,10 +100,10 @@
     <summary type="html">
     
       &lt;blockquote&gt;
-&lt;p&gt;又有好多天没写博客了，Markdown语法都快忘了….&lt;/p&gt;
+&lt;p&gt;又有好多天没写博客了，Markdown 语法都快忘了….&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;步入正题，赶紧来看看我们今天要搞的事情&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;http://upload-images.
+&lt;p&gt;&lt;img src=&quot;http://upload-images
     
     </summary>
     
@@ -219,11 +219,11 @@
   </entry>
   
   <entry>
-    <title>FFmpeg解码本地H.264</title>
-    <link href="http://yoursite.com/2016/12/15/FFmpeg%E8%A7%A3%E7%A0%81%E6%9C%AC%E5%9C%B0H-264/"/>
-    <id>http://yoursite.com/2016/12/15/FFmpeg解码本地H-264/</id>
+    <title>FFmpeg 解码本地 H.264</title>
+    <link href="http://yoursite.com/2016/12/15/FFmpeg%20%E8%A7%A3%E7%A0%81%E6%9C%AC%E5%9C%B0%20H-264/"/>
+    <id>http://yoursite.com/2016/12/15/FFmpeg 解码本地 H-264/</id>
     <published>2016-12-15T09:28:46.000Z</published>
-    <updated>2017-03-02T08:31:27.000Z</updated>
+    <updated>2017-03-09T04:02:48.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>最近学习 FFmpeg，自己写了一个小 Demo 解码一个 H.264 裸流数据<br>FFmpeg 的编译导入等工作我们不再赘述，下面直接进入正题</p>
@@ -253,11 +253,11 @@
   </entry>
   
   <entry>
-    <title>通过拦截hitTest:withEvent方法，解决超出父视图的子视图不能接受点击事件的问题</title>
-    <link href="http://yoursite.com/2016/12/14/%E9%80%9A%E8%BF%87%E6%8B%A6%E6%88%AAhitTest-withEvent%E6%96%B9%E6%B3%95%EF%BC%8C%E8%A7%A3%E5%86%B3%E8%B6%85%E5%87%BA%E7%88%B6%E8%A7%86%E5%9B%BE%E7%9A%84%E5%AD%90%E8%A7%86%E5%9B%BE%E4%B8%8D%E8%83%BD%E6%8E%A5%E5%8F%97%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2016/12/14/通过拦截hitTest-withEvent方法，解决超出父视图的子视图不能接受点击事件的问题/</id>
+    <title>通过拦截 hitTest:withEvent 方法，解决超出父视图的子视图不能接受点击事件的问题</title>
+    <link href="http://yoursite.com/2016/12/14/%E9%80%9A%E8%BF%87%E6%8B%A6%E6%88%AA%20hitTest-withEvent%20%E6%96%B9%E6%B3%95%EF%BC%8C%E8%A7%A3%E5%86%B3%E8%B6%85%E5%87%BA%E7%88%B6%E8%A7%86%E5%9B%BE%E7%9A%84%E5%AD%90%E8%A7%86%E5%9B%BE%E4%B8%8D%E8%83%BD%E6%8E%A5%E5%8F%97%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2016/12/14/通过拦截 hitTest-withEvent 方法，解决超出父视图的子视图不能接受点击事件的问题/</id>
     <published>2016-12-14T13:46:46.000Z</published>
-    <updated>2017-03-02T08:29:09.000Z</updated>
+    <updated>2017-03-09T04:02:33.000Z</updated>
     
     <content type="html"><![CDATA[<p>由于项目需求，我需要在一个高度为50的控件上面创建一个下拉菜单，效果如下<br><img src="http://upload-images.jianshu.io/upload_images/1393645-7615f6291d98befb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshot.png"><br>当我做完之后发现，下拉菜单的下拉选择项不能点击<br><img src="http://upload-images.jianshu.io/upload_images/1393645-95c2565295819887.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshot.png"><br>这是因为我们的控件高度只有50，但是下拉菜单的高度超出了控件的大小，这样，我们就接受不到点击事件了<br>这边找了一个比较详细的图，来描述事件的分发<br><img src="http://upload-images.jianshu.io/upload_images/1393645-f33f808a87360846.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="226702-dd53b5a6df2f3ea5.png"><br>每个 view 都会有</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">UIView</span> *)hitTest:(<span class="built_in">CGPoint</span>)point withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</div><div class="line">    </div><div class="line">    <span class="built_in">UIView</span> *view = [<span class="keyword">super</span> hitTest:point withEvent:event];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -282,11 +282,11 @@
   </entry>
   
   <entry>
-    <title>Swift3.0利用Runtime简单封装一个字典转模型</title>
-    <link href="http://yoursite.com/2016/11/16/Swift3-0%E5%88%A9%E7%94%A8Runtime%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85%E4%B8%80%E4%B8%AA%E5%AD%97%E5%85%B8%E8%BD%AC%E6%A8%A1%E5%9E%8B/"/>
-    <id>http://yoursite.com/2016/11/16/Swift3-0利用Runtime简单封装一个字典转模型/</id>
+    <title>Swift3.0 利用 Runtime 简单封装一个字典转模型</title>
+    <link href="http://yoursite.com/2016/11/16/Swift3-0%20%E5%88%A9%E7%94%A8%20Runtime%20%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85%E4%B8%80%E4%B8%AA%E5%AD%97%E5%85%B8%E8%BD%AC%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://yoursite.com/2016/11/16/Swift3-0 利用 Runtime 简单封装一个字典转模型/</id>
     <published>2016-11-16T10:12:00.000Z</published>
-    <updated>2017-03-02T08:32:43.000Z</updated>
+    <updated>2017-03-09T04:02:58.000Z</updated>
     
     <content type="html"><![CDATA[<p>在通常的项目中，我们经常会用到字典转 model 的操作，我们可以使用系统的<br><code>setValuesForKeys</code>（Swift）<br><code>setValuesForKeysWithDictionary</code>（OC）<br>方法来完成这一操作，但是这样就会遇到一个问题，如果我们数据字典其中的一个 key 与系统关键字重名，那我们在model中使用这个 key 作为属性就会报错，为了解决这一问题，我们会使用一些第三方库去完成字典转模型的操作，例如 MJExtension ，在这里，我们自己去封装一个简单的字典转模型，闲话不多说，我们马上开始。</p>
 <p>首先我们去创建一个 BaseModel 类，我们在这个根类中去实现一个可以字典转自身属性的构造方法，只要我们自定义的 model 都继承这个 BaseModel 那么我们的 model 就都能使用这个构造方法完成字典转模型的操作啦~<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseModel</span>: <span class="title">NSObject</span> </span>&#123; </div><div class="line">    <span class="comment">//自定义构造方法</span></div><div class="line">    <span class="keyword">init</span>(dic: [<span class="type">String</span>:<span class="type">Any</span>]) &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -310,11 +310,11 @@
   </entry>
   
   <entry>
-    <title>Swift3.0版时光电影项目笔记</title>
-    <link href="http://yoursite.com/2016/10/18/Swift3.0%E7%89%88%E6%97%B6%E5%85%89%E7%94%B5%E5%BD%B1%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2016/10/18/Swift3.0版时光电影项目笔记/</id>
+    <title>Swift3.0 版时光电影项目笔记</title>
+    <link href="http://yoursite.com/2016/10/18/Swift3.0%20%E7%89%88%E6%97%B6%E5%85%89%E7%94%B5%E5%BD%B1%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2016/10/18/Swift3.0 版时光电影项目笔记/</id>
     <published>2016-10-18T05:03:04.000Z</published>
-    <updated>2017-03-02T08:33:46.000Z</updated>
+    <updated>2017-03-09T04:03:04.000Z</updated>
     
     <content type="html"><![CDATA[<p>Swift 刚学几天，以练手的心态改写以前一个 OC 的小项目，这里记录一些遇到的坑点。由于是初学者，各位大牛如果发现错误，欢迎指出。闲话不多说，下面就正式开始</p>
 <h1 id="1-私有属性和方法"><a href="#1-私有属性和方法" class="headerlink" title="1.私有属性和方法"></a>1.私有属性和方法</h1><p>在 Swift 中，是没有私有属性的，也就是说，只要在同一个命名空间（后面会有介绍），我们都可以访问的到。但是Swift中是有有 private 关键字的，根据特点决定，如果编写 App 的话，直接用默认的就好了，就是啥也不用敲，如果编写 Framework，请认真思考流程，认真设计，外部接口要设置 public，而一些不想让别人看见的就可以用 private 或者 internal 修饰了</p>

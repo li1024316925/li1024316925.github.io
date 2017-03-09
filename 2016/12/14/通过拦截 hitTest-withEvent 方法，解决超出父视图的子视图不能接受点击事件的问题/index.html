@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>通过拦截 hittest:withevent 方法，解决超出父视图的子视图不能接受点击事件的问题 | LLQ’s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="由于项目需求，我需要在一个高度为50的控件上面创建一个下拉菜单，效果如下当我做完之后发现，下拉菜单的下拉选择项不能点击这是因为我们的控件高度只有50，但是下拉菜单的高度超出了控件的大小，这样，我们就接受不到点击事件了这边找了一个比较详细的图，来描述事件的分发每个 view 都会有
+123456- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过拦截 hitTest:withEvent 方法，解决超出父视图的子视图不能接受点击事件的问题">
+<meta property="og:url" content="http://yoursite.com/2016/12/14/通过拦截 hitTest-withEvent 方法，解决超出父视图的子视图不能接受点击事件的问题/index.html">
+<meta property="og:site_name" content="LLQ’s Blog">
+<meta property="og:description" content="由于项目需求，我需要在一个高度为50的控件上面创建一个下拉菜单，效果如下当我做完之后发现，下拉菜单的下拉选择项不能点击这是因为我们的控件高度只有50，但是下拉菜单的高度超出了控件的大小，这样，我们就接受不到点击事件了这边找了一个比较详细的图，来描述事件的分发每个 view 都会有
+123456- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1393645-7615f6291d98befb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1393645-95c2565295819887.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1393645-f33f808a87360846.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-03-09T04:02:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通过拦截 hitTest:withEvent 方法，解决超出父视图的子视图不能接受点击事件的问题">
+<meta name="twitter:description" content="由于项目需求，我需要在一个高度为50的控件上面创建一个下拉菜单，效果如下当我做完之后发现，下拉菜单的下拉选择项不能点击这是因为我们的控件高度只有50，但是下拉菜单的高度超出了控件的大小，这样，我们就接受不到点击事件了这边找了一个比较详细的图，来描述事件的分发每个 view 都会有
+123456- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1393645-7615f6291d98befb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="LLQ’s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/orange.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+</head>
+
+
+<body>
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="85px" height="85px" alt="Hike News" src="/css/images/orange.png">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">所有文章</a> </li>
+                
+                  <li> <a class="main-nav-link" href="https://github.com/li1024316925">GitHub</a> </li>
+                
+                  <li> <a class="main-nav-link" href="http://www.jianshu.com/u/605febdfa703">简书</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/impress">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-通过拦截 hitTest-withEvent 方法，解决超出父视图的子视图不能接受点击事件的问题" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      通过拦截 hitTest:withEvent 方法，解决超出父视图的子视图不能接受点击事件的问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/12/14/通过拦截 hitTest-withEvent 方法，解决超出父视图的子视图不能接受点击事件的问题/" class="article-date">
+	  <time datetime="2016-12-14T13:46:46.000Z" itemprop="datePublished">2016-12-14</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于项目需求，我需要在一个高度为50的控件上面创建一个下拉菜单，效果如下<br><img src="http://upload-images.jianshu.io/upload_images/1393645-7615f6291d98befb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshot.png"><br>当我做完之后发现，下拉菜单的下拉选择项不能点击<br><img src="http://upload-images.jianshu.io/upload_images/1393645-95c2565295819887.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshot.png"><br>这是因为我们的控件高度只有50，但是下拉菜单的高度超出了控件的大小，这样，我们就接受不到点击事件了<br>这边找了一个比较详细的图，来描述事件的分发<br><img src="http://upload-images.jianshu.io/upload_images/1393645-f33f808a87360846.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="226702-dd53b5a6df2f3ea5.png"><br>每个 view 都会有</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">UIView</span> *)hitTest:(<span class="built_in">CGPoint</span>)point withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</div><div class="line">    </div><div class="line">    <span class="built_in">UIView</span> *view = [<span class="keyword">super</span> hitTest:point withEvent:event];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样一个方法<br>这个方法会判断当前点击的“点”是否在本 view 上，如果在本 view 上，就继续寻找本 view 的 Subview，还是通过此方法判断点击的“点”是否在 Subview 上，直到找完所有的 Subview，然后这个方法就会 return 这个最终的 Subview 并一层层的向上传递给 UIWindow，这样我们就拿到了屏幕上面最终响应的 view。</p>
+<p>回到我们最开始遇到的问题。</p>
+<p>由于我们下拉菜单超出了我们的自定义控件，当我们点击到下拉菜单时，从 UIWindow 开始通过 <code>hitTest</code> 方法向下寻找响应的 view，当查找到我们的自定义控件时，就会 return 了，因为我们点击的“点”已经超出了自定义控件，也就是说，这个“点”不在我们的自定义控件上，所以在自定义控件上面的下拉菜单无论如何也不会响应。</p>
+<p>所以，我们只要手动的去 return 我们的下拉菜单，手动的去连接起这个 响应 view 的链，我们的下拉菜单就能响应</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">UIView</span> *)getTargetView:(<span class="built_in">UIView</span> *)view point:(<span class="built_in">CGPoint</span>)point event:(<span class="built_in">UIEvent</span> *)event</div><div class="line">&#123;</div><div class="line">    </div><div class="line">    __block <span class="built_in">UIView</span> *subView;</div><div class="line">    </div><div class="line">    <span class="comment">//逆序 由层级最低 也就是最上层的子视图开始</span></div><div class="line">    [view.subviews enumerateObjectsWithOptions:<span class="built_in">NSEnumerationReverse</span> usingBlock:^(__kindof <span class="built_in">UIView</span> * _Nonnull obj, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> * _Nonnull stop) &#123;</div><div class="line">        <span class="comment">//point 从view 转到 obj中</span></div><div class="line">        <span class="built_in">CGPoint</span> hitPoint = [obj convertPoint:point fromView:view];</div><div class="line">        <span class="comment">//        NSLog(@"%@ - %@",NSStringFromCGPoint(point),NSStringFromCGPoint(hitPoint));</span></div><div class="line">        </div><div class="line">        <span class="keyword">if</span>([obj pointInside:hitPoint withEvent:event])<span class="comment">//在当前视图范围内</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(obj.subviews.count != <span class="number">0</span>)</div><div class="line">            &#123;</div><div class="line">                <span class="comment">//如果有子视图 递归</span></div><div class="line">                subView = [<span class="keyword">self</span> getTargetView:obj point:hitPoint event:event];</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(!subView)</div><div class="line">                &#123;</div><div class="line">                    <span class="comment">//如果没找到 提交当前视图</span></div><div class="line">                    subView = obj;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span></div><div class="line">            &#123;</div><div class="line">                subView = obj;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            *stop = <span class="literal">YES</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span><span class="comment">//不在当前视图范围内</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(obj.subviews.count != <span class="number">0</span>)</div><div class="line">            &#123;</div><div class="line">                <span class="comment">//如果有子视图 递归</span></div><div class="line">                subView = [<span class="keyword">self</span> getTargetView:obj point:hitPoint event:event];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> subView;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个方法的目的就是找到点击的“点”最终所在的 subview，然后 return。</p>
+<p>我们再回到我们的响应链断掉的地方，也就是自定义控件内的 <code>hitTest</code> 方法</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">UIView</span> *)hitTest:(<span class="built_in">CGPoint</span>)point withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</div><div class="line">    </div><div class="line">    <span class="built_in">UIView</span> *view = [<span class="keyword">super</span> hitTest:point withEvent:event];</div><div class="line">  </div><div class="line">    <span class="comment">//由于响应链在此处断开，我们就去手动寻找最终响应的子视图，传入本 view 遍历本 view 的子视图</span></div><div class="line">    <span class="built_in">UIView</span> *tempview = [<span class="keyword">self</span> getTargetView:<span class="keyword">self</span> point:point event:event];</div><div class="line">    <span class="keyword">if</span> (tempview) &#123;</div><div class="line">        view = tempview;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>手动找到点击的点所在的 subview，并在断开的地方 return，这样我们的下拉菜单就能响应点击了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+	<div id="comment">
+	
+	<!-- 多说评论框 start -->
+	 <div class="ds-thread" data-thread-key="/2016/12/14/通过拦截 hitTest-withEvent 方法，解决超出父视图的子视图不能接受点击事件的问题/" data-title="通过拦截 hitTest:withEvent 方法，解决超出父视图的子视图不能接受点击事件的问题" data-url="http://yoursite.com/2016/12/14/通过拦截 hitTest-withEvent 方法，解决超出父视图的子视图不能接受点击事件的问题/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"iTimeTraveler"};
+	  (function() {
+	    var ds = document.createElement('script');
+	    ds.type = 'text/javascript';ds.async = true;
+	    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	    ds.charset = 'UTF-8';
+	    (document.getElementsByTagName('head')[0] 
+	     || document.getElementsByTagName('body')[0]).appendChild(ds);
+	  })();
+	  </script>
+	<!-- 多说公共JS代码 end -->
+	
+	</div>
+
+
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/15/FFmpeg 解码本地 H-264/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          FFmpeg 解码本地 H.264
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/16/Swift3-0 利用 Runtime 简单封装一个字典转模型/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Swift3.0 利用 Runtime 简单封装一个字典转模型</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+    <ol class="toc">无</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2017 LLQ’s Blog All Rights Reserved.</p>
+	      <p id="copyRightCn">LLQ 保留所有权利</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/li1024316925" class="mobile-nav-link">Categories</a>
+  
+    <a href="http://www.jianshu.com/u/605febdfa703" class="mobile-nav-link">Tags</a>
+  
+    <a href="/impress" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            LLQ’s Blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 LLQ All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+  
+</body>
+</html>
