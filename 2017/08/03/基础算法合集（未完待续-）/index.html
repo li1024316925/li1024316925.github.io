@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>基础算法合集（未完待续...） | LLQ’s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="##桶排序1234567891011121314151617181920#pragma mark - 桶排序    printf(&amp;quot;桶排序\n&amp;quot;);    //比较0~10之间的数则创建一个长度11的数组    int a[11];    //初始化，全部归0    for (int i = 0; i &amp;lt; 11; i ++) &amp;#123;        a[i] = 0;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础算法合集（未完待续...）">
+<meta property="og:url" content="http://yoursite.com/2017/08/03/基础算法合集（未完待续-）/index.html">
+<meta property="og:site_name" content="LLQ’s Blog">
+<meta property="og:description" content="##桶排序1234567891011121314151617181920#pragma mark - 桶排序    printf(&amp;quot;桶排序\n&amp;quot;);    //比较0~10之间的数则创建一个长度11的数组    int a[11];    //初始化，全部归0    for (int i = 0; i &amp;lt; 11; i ++) &amp;#123;        a[i] = 0;">
+<meta property="og:updated_time" content="2017-08-03T09:31:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基础算法合集（未完待续...）">
+<meta name="twitter:description" content="##桶排序1234567891011121314151617181920#pragma mark - 桶排序    printf(&amp;quot;桶排序\n&amp;quot;);    //比较0~10之间的数则创建一个长度11的数组    int a[11];    //初始化，全部归0    for (int i = 0; i &amp;lt; 11; i ++) &amp;#123;        a[i] = 0;">
+  
+    <link rel="alternate" href="/atom.xml" title="LLQ’s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/orange.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+</head>
+
+
+<body>
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="85px" height="85px" alt="Hike News" src="/css/images/orange.png">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">所有文章</a> </li>
+                
+                  <li> <a class="main-nav-link" href="https://github.com/li1024316925">GitHub</a> </li>
+                
+                  <li> <a class="main-nav-link" href="http://www.jianshu.com/u/605febdfa703">简书</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/impress">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-基础算法合集（未完待续-）" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      基础算法合集（未完待续...）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/08/03/基础算法合集（未完待续-）/" class="article-date">
+	  <time datetime="2017-08-03T09:15:20.000Z" itemprop="datePublished">2017-08-03</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##桶排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">#pragma mark - 桶排序</div><div class="line">    printf(&quot;桶排序\n&quot;);</div><div class="line">    //比较0~10之间的数则创建一个长度11的数组</div><div class="line">    int a[11];</div><div class="line">    //初始化，全部归0</div><div class="line">    for (int i = 0; i &lt; 11; i ++) &#123;</div><div class="line">        a[i] = 0;</div><div class="line">    &#125;</div><div class="line">    //读入5个数，记录每个数出现的次数</div><div class="line">    for (int i = 0; i &lt; 5; i++) &#123;</div><div class="line">        int t;</div><div class="line">        scanf(&quot;%d&quot;,&amp;t);</div><div class="line">        a[t]++;</div><div class="line">    &#125;</div><div class="line">    //按顺序将角标输出（角标即为排序的数），个数是几就输出几次</div><div class="line">    for (int i = 0; i &lt; 11; i ++) &#123;</div><div class="line">        for (int j = 1; j &lt;= a[i]; j ++) &#123;</div><div class="line">            printf(&quot;%d\n&quot;,i);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>##冒泡排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#pragma mark - 冒泡排序</div><div class="line">    printf(&quot;冒泡排序\n&quot;);</div><div class="line">    //比较5个数，创建一个长度为5的数组</div><div class="line">    int b[5];</div><div class="line">    //读入5个数</div><div class="line">    for (int i = 0; i &lt; 5; i ++) &#123;</div><div class="line">        scanf(&quot;%d&quot;,&amp;b[i]);</div><div class="line">    &#125;</div><div class="line">    //排序</div><div class="line">    //5个数只需要冒泡四次</div><div class="line">    for (int i = 0; i &lt; 5-1; i ++) &#123;</div><div class="line">        for (int j = 0; j &lt; 5-i; j ++) &#123;</div><div class="line">            if (b[j]&lt;b[j+1]) &#123;</div><div class="line">                //两个数比较，如果后面的数大于前面的数，则两个数交换（冒泡）</div><div class="line">                int t;</div><div class="line">                t = b[j];</div><div class="line">                b[j] = b[j+1];</div><div class="line">                b[j+1] = t;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    //按顺序输出</div><div class="line">    for (int i = 0; i &lt; 5; i ++) &#123;</div><div class="line">        printf(&quot;%d\n&quot;,b[i]);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>##快速排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">#pragma mark - 快速排序</div><div class="line">//定义一个全局数组用于排序10个数</div><div class="line">int a[10];</div><div class="line"></div><div class="line">//快速排序函数</div><div class="line">void quicksort(int left,int right)&#123;</div><div class="line">    if (right&lt;left) &#123;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    //让i，j分别等于左右两边的下标，让最左的数作为基数</div><div class="line">    int i = left,j = right,temp = a[left],t;</div><div class="line">    /*</div><div class="line">     1.先j向左移动，直到找到比temp小的数，然后让i向右移动，直到找到比temp大的数，然后将这两个数交换位置。由于基数为最左端的数，所以一定要让j先向左移动</div><div class="line">     2.继续移动i，j，重复步骤1，直到i，j相等，将基数放于i位置</div><div class="line">     3.从基数处分为两组，分别执行步骤1、2、3</div><div class="line">     */</div><div class="line">    while (i != j) &#123;</div><div class="line">        //先让j向左移动</div><div class="line">        while (a[j]&gt;=temp &amp;&amp; i&lt;j) &#123;</div><div class="line">            j --;</div><div class="line">        &#125;</div><div class="line">        //再让i向右移动</div><div class="line">        while (a[i]&lt;=temp &amp;&amp; i&lt;j) &#123;</div><div class="line">            i ++;</div><div class="line">        &#125;</div><div class="line">        //找到比基数小的数与比基数大的数，交换</div><div class="line">        if (i &lt; j) &#123;</div><div class="line">            t = a[i];</div><div class="line">            a[i] = a[j];</div><div class="line">            a[j] = t;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    //i，j相等，将基数与i位置的数交换</div><div class="line">    a[left] = a[i];</div><div class="line">    a[i] = temp;</div><div class="line">    //分成两组，继续操作</div><div class="line">    quicksort(left, i-1);</div><div class="line">    quicksort(i+1, right);</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    </div><div class="line">    //读入十个数</div><div class="line">    for (int i = 0; i &lt; 10; i ++) &#123;</div><div class="line">        scanf(&quot;%d&quot;,&amp;a[i]);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    //执行排序函数</div><div class="line">    quicksort(0, 9);</div><div class="line">    </div><div class="line">    for (int i = 0; i &lt; 10; i ++) &#123;</div><div class="line">        printf(&quot;%d\n&quot;,a[i]);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>##队列与出入队<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">#pragma mark - 队列与出入队列</div><div class="line">//定义一个队列</div><div class="line">struct queue &#123;</div><div class="line">    int data[100];  //队列主体，存储数据</div><div class="line">    int head;  //队首</div><div class="line">    int tail;  //队尾</div><div class="line">&#125;;</div><div class="line"></div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    </div><div class="line">    struct queue q;  //初始化一个队列</div><div class="line">    //初始化</div><div class="line">    q.head = 0;</div><div class="line">    q.tail = 0;</div><div class="line">    //输入9个数</div><div class="line">    for (int i = 0; i &lt; 9; i ++) &#123;</div><div class="line">        scanf(&quot;%d&quot;,&amp;q.data[q.tail]);</div><div class="line">        q.tail ++;</div><div class="line">    &#125;</div><div class="line">    //空队列时停止循环</div><div class="line">    while (q.head &lt; q.tail) &#123;</div><div class="line">        //打印队首，并出队</div><div class="line">        printf(&quot;%d\n&quot;,q.data[q.head]);</div><div class="line">        q.head ++;</div><div class="line">        //将新队首添加到队尾</div><div class="line">        q.data[q.tail] = q.data[q.head];</div><div class="line">        q.tail ++;</div><div class="line">        //再将队首出队</div><div class="line">        q.head ++;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>##判断回文（栈操作）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">#pragma mark - 判断字符串是否为回文</div><div class="line">    char a[100], s[100];</div><div class="line">    long len, next, top, mid;</div><div class="line">    //输入一串字符</div><div class="line">    gets(a);</div><div class="line">    len = strlen(a);</div><div class="line">    //找出中点</div><div class="line">    mid = len/2-1;</div><div class="line">    //初始化栈</div><div class="line">    top = 0;</div><div class="line">    //将中点前的字符入栈</div><div class="line">    for (int i = 0; i&lt;= mid; i ++) &#123;</div><div class="line">        top ++;</div><div class="line">        s[top] = a[i];</div><div class="line">    &#125;</div><div class="line">    //判断奇偶，来确定开始对比的位置</div><div class="line">    if (len%2 == 0) &#123;</div><div class="line">        next = mid + 1;</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">        next = mid + 2;</div><div class="line">    &#125;</div><div class="line">    //对比，对比成功一位出栈一位</div><div class="line">    for (long i = next; i &lt; len; i ++) &#123;</div><div class="line">        if (s[top] != a[i]) &#123;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">        //出栈操作</div><div class="line">        top --;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    if (top == 0) &#123;</div><div class="line">        printf(&quot;y\n&quot;);</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">        printf(&quot;n\n&quot;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>##链表-插入一个数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">#pragma mark - 链表操作-插入一个数据</div><div class="line">//定义链表的节点</div><div class="line">struct node &#123;</div><div class="line">    int data;  //节点的数据</div><div class="line">    struct node *next;  //指向下一个节点的指针</div><div class="line">&#125;;</div><div class="line"></div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    </div><div class="line">    struct node *head, *p, *q, *t;</div><div class="line">    //读入5个数</div><div class="line">    int a;</div><div class="line">    head = NULL;</div><div class="line">    q = NULL;</div><div class="line">    for (int i = 0; i &lt; 5; i ++) &#123;</div><div class="line">        scanf(&quot;%d&quot;,&amp;a);</div><div class="line">        //创建一个节点</div><div class="line">        p = malloc(sizeof(struct node));</div><div class="line">        p-&gt;data = a;</div><div class="line">        p-&gt;next = NULL;</div><div class="line">        if (head == NULL) &#123;</div><div class="line">            //如果头节点的指针为空，说明这是一个空链表，将新创建的节点作为头节点</div><div class="line">            head = p;</div><div class="line">        &#125;</div><div class="line">        else &#123;</div><div class="line">            //头节点不为空，则说明这不是一个空链表，则将新创建的节点作为上一个节点的下一个节点</div><div class="line">            q-&gt;next = p;</div><div class="line">        &#125;</div><div class="line">        //将新创建的节点作为上一个节点，进行下一次循环</div><div class="line">        q = p;</div><div class="line">    &#125;</div><div class="line">    //插入</div><div class="line">    scanf(&quot;%d&quot;,&amp;a);</div><div class="line">    //循环遍历，直到找到一个比输入的数大的节点，插入到它前面</div><div class="line">    t = head;</div><div class="line">    while (t != NULL) &#123;</div><div class="line">        if (t-&gt;next-&gt;data &gt; a) &#123;</div><div class="line">            //创建一个新的节点</div><div class="line">            p = malloc(sizeof(struct node));</div><div class="line">            p-&gt;data = a;</div><div class="line">            //插入这个节点</div><div class="line">            p-&gt;next = t-&gt;next;</div><div class="line">            t-&gt;next = p;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">        t = t-&gt;next;</div><div class="line">    &#125;</div><div class="line">    //遍历</div><div class="line">    t = head;</div><div class="line">    while (t != NULL) &#123;</div><div class="line">        printf(&quot;%d\n&quot;,t-&gt;data);</div><div class="line">        t = t-&gt;next;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>##“模拟链表” 的实现与操作（插入数据）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">#pragma mark - “模拟链表”的实现与操作（插入一个数）</div><div class="line">    /*</div><div class="line">     模拟链表：有两个整形数组，第一个整型数组 data 是用来存放序列中具体数字的，另外一个整型 数组 right 是用来存放当前序列中每一个元素右边的元素在数组 data 中位置的。例如 right[1] 的值为 2，就表示当前序列中 1 号元素右边的元素存放在 data[2]中;如果是 0，例如 right[9] 的值为 0，就表示当前序列中 9 号元素的右边没有元素。</div><div class="line">     */</div><div class="line">    //定义两个数组</div><div class="line">    int data[100], right[100];</div><div class="line">    int n, len, t;</div><div class="line">    //读入几个数</div><div class="line">    scanf(&quot;%d&quot;,&amp;n);</div><div class="line">    for (int i = 1; i &lt;= n; i ++) &#123;</div><div class="line">        scanf(&quot;%d&quot;,&amp;data[i]);</div><div class="line">    &#125;</div><div class="line">    //初始化right数组</div><div class="line">    len = n;</div><div class="line">    for (int i = 1; i &lt;= n; i ++) &#123;</div><div class="line">        if (i != len) &#123;</div><div class="line">            //如果“模拟链表”中第 i 位不是最后一位，则在“模拟链表”中第 i 位的右边一位在 data 中的位置为 i+1</div><div class="line">            right[i] = i+1;</div><div class="line">        &#125;</div><div class="line">        else &#123;</div><div class="line">            //i 是最后一位，则“模拟链表”中第 i 位的右边一位在</div><div class="line">            right[i] = 0;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    //插入一个数据，直接将数据放在 data 的最后</div><div class="line">    len ++;</div><div class="line">    scanf(&quot;%d&quot;,&amp;data[len]);</div><div class="line">    //遍历链表，直到找到一个比输入数大的数</div><div class="line">    t = 1;</div><div class="line">    while (t != 0) &#123;</div><div class="line">        //如果链表中 t 位置的下一位的值大于刚刚输入的数，则进行插入操作</div><div class="line">        if (data[right[t]] &gt; data[len]) &#123;</div><div class="line">            right[len] = right[t];</div><div class="line">            right[t] = len;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">        //t 等于链表中 t 位置的下一位</div><div class="line">        t = right[t];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    //遍历</div><div class="line">    t = 1;</div><div class="line">    while (t != 0) &#123;</div><div class="line">        printf(&quot;%d\n&quot;,data[t]);</div><div class="line">        t = right[t];</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+	<div id="comment">
+	
+	<!-- 多说评论框 start -->
+	 <div class="ds-thread" data-thread-key="/2017/08/03/基础算法合集（未完待续-）/" data-title="基础算法合集（未完待续...）" data-url="http://yoursite.com/2017/08/03/基础算法合集（未完待续-）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"iTimeTraveler"};
+	  (function() {
+	    var ds = document.createElement('script');
+	    ds.type = 'text/javascript';ds.async = true;
+	    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	    ds.charset = 'UTF-8';
+	    (document.getElementsByTagName('head')[0] 
+	     || document.getElementsByTagName('body')[0]).appendChild(ds);
+	  })();
+	  </script>
+	<!-- 多说公共JS代码 end -->
+	
+	</div>
+
+
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/02/22/UITableView 行高自适应-缓存优化/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">UITableView 行高自适应+缓存优化</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+    <ol class="toc">无</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2017 LLQ’s Blog All Rights Reserved.</p>
+	      <p id="copyRightCn">LLQ 保留所有权利</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/li1024316925" class="mobile-nav-link">Categories</a>
+  
+    <a href="http://www.jianshu.com/u/605febdfa703" class="mobile-nav-link">Tags</a>
+  
+    <a href="/impress" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            LLQ’s Blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 LLQ All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+  
+</body>
+</html>
