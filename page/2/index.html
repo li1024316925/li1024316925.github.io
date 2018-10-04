@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>LLQ’s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="i have an Apple">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LLQ’s Blog">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="LLQ’s Blog">
+<meta property="og:description" content="i have an Apple">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LLQ’s Blog">
+<meta name="twitter:description" content="i have an Apple">
+  
+    <link rel="alternate" href="/atom.xml" title="LLQ’s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/orange.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/home.css" >
+  
+
+  
+
+  
+
+</head>
+
+
+<body>
+  
+    <header id="header">
+
+  
+    <div id="intrologo" class="intro-logo" style="background-position:center; background-repeat:no-repeat; background-image: url(); background-size: auto 100%;">
+    <script>
+        var imgUrls = "css/images/home-bg.jpg,css/images/fengjing.jpg,css/images/pose.jpg,css/images/fengjing2.jpg".split(",");
+        var random = Math.floor((Math.random() * imgUrls.length ));
+        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+          document.getElementById("intrologo").style.backgroundImage='url(' + imgUrls[random] + ')';
+        } else {
+          document.getElementById("intrologo").style.backgroundImage='url(/' + imgUrls[random] + ')';
+        }
+    </script>
+  
+
+    <canvas width="100%" height="100%"></canvas>
+    <script>
+      var c = document.getElementsByTagName('canvas')[0],
+          x = c.getContext('2d'),
+          w = window.innerWidth,
+          h = window.innerHeight,
+          pr = window.devicePixelRatio || 1,
+          f = 90,
+          q,
+          m = Math,
+          r = 0,
+          u = m.PI*2,
+          v = m.cos,
+          z = m.random
+      c.width = w*pr
+      c.height = h*pr
+      x.scale(pr, pr)
+      x.globalAlpha = 0.6
+
+      
+    </script>
+    
+
+    
+      <div id="homelogo" class="homelogo" style="background: rgba(255,255,255,1);"> 
+    
+
+        
+          <div class="homelogoback"  style="border: 1px solid #404040;" >
+            <h1><a href="#content" id="logo">LLQ’s Blog</a></h1>
+            <h3>i have an Apple</h3>
+            <h5>LLQ</h5>
+            <!-- <p><a href="https://github.com/iTimeTraveler" target="_blank">Github</a></p> -->
+          </div>
+        
+    
+    </div>
+  </div>
+
+  <!-- 自适应主页背景大图 -->
+  
+    <script>
+        var img = new Image();
+        var intrologodiv = document.getElementById("intrologo");
+        img.src = intrologodiv.style.backgroundImage.replace('url(','').replace(')','').replace(/\"/gi, "");
+        img.onload=function(){
+          if (img.width / img.height <= document.body.clientWidth / document.body.clientHeight) {
+            intrologodiv.style.backgroundSize = "100% auto";
+          } else {
+            intrologodiv.style.backgroundSize = "auto 100%";
+          }
+        };
+    </script>
+ 
+
+ <!-- home_logo_image居中 -->
+ 
+    <script>
+        var homelogodiv = document.getElementById("homelogo");
+        if (document.all.homelogo.offsetWidth > document.body.clientWidth) {
+          homelogodiv.style.width = document.body.clientWidth + "px";
+          homelogodiv.style.marginLeft = document.body.clientWidth * -0.5 + "px";
+        } else {
+          homelogodiv.style.width = homelogodiv.clientWidth  + "px";
+          homelogodiv.style.marginLeft = (homelogodiv.clientWidth)  * -0.5 + "px";
+        }
+    </script>
+  
+
+  <div class="intro-navigate">
+      <p class="navigater-list">
+        
+          <a id="beautifont" class="main-nav-link" href="/">首页</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/archives">所有文章</a>
+        
+          <a id="beautifont" class="main-nav-link" href="https://github.com/li1024316925">GitHub</a>
+        
+          <a id="beautifont" class="main-nav-link" href="http://www.jianshu.com/u/605febdfa703">简书</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/impress">关于</a>
+        
+      </p>
+  </div>
+
+</header>
+  
+  <div id="container">
+    <div id="wrap">
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;">
+  
+    <article id="post-Swift3.0 版时光电影项目笔记"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2016/10/18/Swift3.0 版时光电影项目笔记/">Swift3.0 版时光电影项目笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/10/18/Swift3.0 版时光电影项目笔记/" class="article-date">
+	  <time datetime="2016-10-18T05:03:04.000Z" itemprop="datePublished">2016-10-18</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Swift 刚学几天，以练手的心态改写以前一个 OC 的小项目，这里记录一些遇到的坑点。由于是初学者，各位大牛如果发现错误，欢迎指出。闲话不多说，下面就正式开始</p>
+<h1 id="1-私有属性和方法"><a href="#1-私有属性和方法" class="headerlink" title="1.私有属性和方法"></a>1.私有属性和方法</h1><p>在 Swift 中，是没有私有属性的，也就是说，只要在同一个命名空间（后面会有介绍），我们都可以访问的到。但是Swift中是有有 private 关键字的，根据特点决定，如果编写 App 的话，直接用默认的就好了，就是啥也不用敲，如果编写 Framework，请认真思考流程，认真设计，外部接口要设置 public，而一些不想让别人看见的就可以用 private 或者 internal 修饰了</p>
+<h1 id="2-Swift中的宏定义"><a href="#2-Swift中的宏定义" class="headerlink" title="2.Swift中的宏定义"></a>2.Swift中的宏定义</h1><p>在Swift中是没有宏定义的，但是我们可以使用公用函数来替代宏，比如<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">kTabBarWidth</span><span class="params">(object: UITabBarController)</span></span> -&gt; <span class="type">CGFloat</span> &#123;<span class="keyword">return</span> object.tabBar.frame.size.width&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">kTabBarHeight</span><span class="params">(object: UITabBarController)</span></span> -&gt; <span class="type">CGFloat</span> &#123;<span class="keyword">return</span> object.tabBar.frame.size.height&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">kButtonWidth</span><span class="params">(object: UITabBarController)</span></span> -&gt; <span class="type">CGFloat</span> &#123;<span class="keyword">return</span> kTabBarWidth(object: object)/<span class="type">CGFloat</span>((object.viewControllers?.<span class="built_in">count</span>)!)&#125;</div></pre></td></tr></table></figure></p>
+<p>在公用函数中取不到的变量我们可以以参数的形式传入</p>
+<h1 id="3-Swift-中不同类型变量的运算"><a href="#3-Swift-中不同类型变量的运算" class="headerlink" title="3.Swift 中不同类型变量的运算"></a>3.Swift 中不同类型变量的运算</h1><p>Swift 是强语言，如果两个不同类型的相加，必须进行类型转换，比如<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> num1 = <span class="number">10</span></div><div class="line"><span class="keyword">let</span> num2 = <span class="number">9.9</span></div><div class="line"><span class="keyword">let</span> iSum = num1 + <span class="type">Int</span>(num2)</div><div class="line"><span class="keyword">let</span> dSum = <span class="type">Double</span>(num1) + num2</div></pre></td></tr></table></figure></p>
+<h1 id="4-按钮添加点击事件"><a href="#4-按钮添加点击事件" class="headerlink" title="4.按钮添加点击事件"></a>4.按钮添加点击事件</h1><p>为按钮添加点击事件，这里使用的是#Selector(方法名)的样式<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//按钮添加点击事件</span></div><div class="line">button.addTarget(<span class="keyword">self</span>, action: #selector(selectedVC(button:)), <span class="keyword">for</span>: <span class="type">UIControlEvents</span>.touchUpInside)</div></pre></td></tr></table></figure></p>
+<p>值得注意的是，我们后面的按钮点击方式的枚举类型应该用<br>枚举名+“.”+枚举值<br>的方式来调用</p>
+<h1 id="5-闭包中的self与循环引用"><a href="#5-闭包中的self与循环引用" class="headerlink" title="5.闭包中的self与循环引用"></a>5.闭包中的self与循环引用</h1><p>Swift 中的闭包，也就是 OC 中的 Block ，怎么使用这里就不多叙述了，我们这里要说的，是要特别注意的点<br>在闭包中使用本类的属性或调用方法，必须使用Self调用，这样的话，就产生了循环引用的问题，和OC中相差不多，我们利用一个 weak 关键字来解决这一问题<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> homeViewModel = <span class="type">HomeViewModel</span>()</div><div class="line"><span class="keyword">weak</span> <span class="keyword">var</span> weakSelf = <span class="keyword">self</span></div><div class="line">homeViewModel.loadMovieData &#123; (data) <span class="keyword">in</span></div><div class="line">    weakSelf!.dataList = data</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="6-Swift中的命名空间"><a href="#6-Swift中的命名空间" class="headerlink" title="6.Swift中的命名空间"></a>6.Swift中的命名空间</h1><p>Objective-C 是没有命名空间的，在应用开发时，所有的代码和引用的静态库最终都会被编译到同一个域和二进制中。这样的后果是一旦我们有重复的类名的话，就会导致编译时的冲突和失败。在 Swift 中，由于可以使用命名空间了，即使是名字相同的类型，只要是来自不同的命名空间的话，都是可以和平共处的。Swift 中的命名空间的使用不是一个项目,而是需要跨项目,在一个项目中,都是一个命名空间,在同一个命名空间下,所有全局变量或者函数共享,不需要 import<br>我们项目中使用到了命名空间，在我们动态创建控制器的时候<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> imgNames = [<span class="string">"home"</span>,<span class="string">"payticket"</span>,<span class="string">"store"</span>,<span class="string">"discover"</span>,<span class="string">"myinfo"</span>]</div><div class="line"><span class="comment">//创建标签控制器数组存储标签控制器名</span></div><div class="line"><span class="keyword">let</span> viewContorllersArray = [<span class="string">"HomeViewController"</span>,<span class="string">"PayTicketViewController"</span>,<span class="string">"StoreViewController"</span>,<span class="string">"DiscoverViewController"</span>,<span class="string">"MyInfoViewController"</span>]</div><div class="line">        </div><div class="line"><span class="keyword">var</span> bnvVcArray:[<span class="type">UIViewController</span>] = []</div><div class="line">        </div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="number">5</span> &#123;</div><div class="line">    <span class="keyword">let</span> str = viewContorllersArray[i]</div><div class="line">    <span class="comment">//通过一个字符串创建控制器对象</span></div><div class="line">    <span class="comment">//获取命名空间</span></div><div class="line">    <span class="comment">//namespace在info.plist 对应的是 CFBundleExecutable,我们可以在info.plist中任意右击一行,选中Show Raw Keys/Values</span></div><div class="line">    <span class="keyword">let</span> namespace = <span class="type">Bundle</span>.main.infoDictionary![<span class="string">"CFBundleExecutable"</span>] <span class="keyword">as</span>! <span class="type">String</span></div><div class="line">    <span class="keyword">let</span> uivcType = <span class="type">NSClassFromString</span>(namespace + <span class="string">"."</span> + str) <span class="keyword">as</span>? <span class="type">UIViewController</span>.<span class="type">Type</span></div><div class="line">    <span class="comment">//可选绑定</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> type = uivcType &#123;</div><div class="line">        <span class="comment">//创建</span></div><div class="line">        <span class="keyword">let</span> uiVC = type.<span class="keyword">init</span>()</div><div class="line">        uiVC.tabBarItem.selectedImage = <span class="type">UIImage</span>(named: imgNames[i] + <span class="string">"_on"</span>)</div><div class="line">        uiVC.tabBarItem.image = <span class="type">UIImage</span>(named: imgNames[i])</div><div class="line">        uiVC.title = imgNames[i]</div><div class="line">        <span class="keyword">let</span> bnv = <span class="type">BaseNavViewController</span>(rootViewController: uiVC)</div><div class="line">        bnvVcArray.append(bnv)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果新建项目时，项目名称中包含有中文，可以进入是 Build Settings 中选中 “All” ，搜索 product name ，即可修改命名空间，如图:<br><img src="http://upload-images.jianshu.io/upload_images/1393645-21279dec8e9096b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2373BC66-3171-4EE9-998F-D715DD43D680.png"></p>
+<h1 id="7-使用-Runtime-实现字典转模型"><a href="#7-使用-Runtime-实现字典转模型" class="headerlink" title="7.使用 Runtime 实现字典转模型"></a>7.使用 Runtime 实现字典转模型</h1><p>我们在项目中自定义了一个 BaseModel 自定义了一个构造方法传入一个字典，来方便的实现字典转模型，在实现过程中，我们在 Swift 中使用了 Runtime<br>我们知道 OC 是动态语言，能够通过 runtime API 调用和替换任意方法，纯 Swift 类的函数调用已经不再是 OC 的运行时发消息，而是在编译时就确定了调用哪个函数，所以没法通过 runtime 获取方法、属性，而Swift为了兼容 OC ，凡是继承自 NSObject 的类都会保留其动态性，所以我们能通过 runtime 拿到继承与 NSObject 的类的方法和属性<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setAttribut</span><span class="params">(dic: [String:Any])</span></span> -&gt; <span class="type">Void</span> &#123;</div><div class="line">    <span class="keyword">let</span> attributDic = attributesDic(dic: dic)</div><div class="line">    </div><div class="line">    <span class="comment">//Runtime获取本类属性</span></div><div class="line">    <span class="keyword">var</span> <span class="built_in">count</span>:<span class="type">UInt32</span> = <span class="number">0</span></div><div class="line">    <span class="keyword">let</span> ivars = class_copyIvarList(<span class="keyword">self</span>.classForCoder, &amp;<span class="built_in">count</span>)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="built_in">count</span> &#123;</div><div class="line">        <span class="comment">//取出属性名</span></div><div class="line">        <span class="keyword">let</span> ivar = ivars?[<span class="type">Int</span>(i)]</div><div class="line">        <span class="keyword">let</span> ivarName = ivar_getName(ivar!)</div><div class="line">        <span class="keyword">let</span> nName = <span class="type">String</span>(cString: ivarName!)</div><div class="line">        <span class="comment">//取出要赋值的值</span></div><div class="line">        <span class="keyword">let</span> attribut = attributDic[nName]</div><div class="line">        <span class="keyword">var</span> value:<span class="type">NSObject</span></div><div class="line">        <span class="keyword">if</span> dic[attribut!] != <span class="literal">nil</span> &#123;</div><div class="line">            value = dic[attribut!] <span class="keyword">as</span>! <span class="type">NSObject</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            value = <span class="string">""</span> <span class="keyword">as</span> <span class="type">NSObject</span></div><div class="line">        &#125;   </div><div class="line"> </div><div class="line">        <span class="comment">//利用KVC给本类的属性赋值</span></div><div class="line">        <span class="keyword">self</span>.setValue(value, forKey: nName)</div><div class="line">           </div><div class="line">    &#125;</div><div class="line">        </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="8-Swift-中的异常处理"><a href="#8-Swift-中的异常处理" class="headerlink" title="8.Swift 中的异常处理"></a>8.Swift 中的异常处理</h1><p>在 OC 中调用方法时，通常是通过一个 NSError 参数来返回异常信息的，但是在Swift中返回异常的方式就有些不同了。下面，我们自定义一个返回异常的函数，并且调用这个函数<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义一个抛出异常的方法</span></div><div class="line"><span class="comment">//在一切正常的情况下，返回值是String类型，</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">someFunctionWhichCanFail</span><span class="params">(param: Int)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span> &#123;       </div><div class="line">    <span class="keyword">if</span> param &gt; <span class="number">0</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"成功"</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="type">NSError</span>(domain: <span class="string">"啦啦啦，失败了"</span>, code: <span class="number">499</span>, userInfo: <span class="literal">nil</span>)</div><div class="line">    &#125;   </div><div class="line">&#125;</div><div class="line"><span class="comment">//do-try-catch这种错误模式，本意就是尝试（try）做一件事情，如果失败则捕获（catch）处理。</span></div><div class="line"><span class="comment">//要注意的是你可以在 do 代码段中写多于一行的代码(并且 try 可以调用不止一个抛错误的方法)。如果一切顺利的话，将会像预期的那样执行那些方法，但是一旦方法出错就会跳出 do 代码段，进入 catch 处。</span></div><div class="line"><span class="keyword">do</span> &#123;</div><div class="line">    <span class="comment">//尝试做一件事情</span></div><div class="line">    <span class="keyword">let</span> result = <span class="keyword">try</span> someFunctionWhichCanFail(param: -<span class="number">1</span>)</div><div class="line">    <span class="built_in">print</span>(<span class="string">"\(result)"</span>)</div><div class="line">&#125; <span class="keyword">catch</span> <span class="keyword">let</span> error &#123;</div><div class="line">    <span class="comment">//在catch中捕获错误信息</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"\(error)"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样，我们就基本明白了 Swift 中处理异常的基本方式，再看我们的项目。<br>在项目中，我们封装了一个JSON文件解析类，这个类有一个方法，传入JSON文件名，返回一个解析好的字典或是数组<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">jsonObjectFromFileName</span>(<span class="title">fileName</span>: <span class="title">String</span>) -&gt; <span class="title">NSDictionary</span>? </span>&#123;</div><div class="line">    <span class="comment">//获取文件路径</span></div><div class="line">    <span class="keyword">let</span> path = <span class="type">Bundle</span>.main.path(forResource: fileName, ofType: <span class="string">"json"</span>)</div><div class="line">    <span class="comment">//解析</span></div><div class="line">    <span class="keyword">let</span> data = <span class="type">NSData</span>.<span class="keyword">init</span>(contentsOfFile: path!)</div><div class="line">    <span class="keyword">let</span> dic = <span class="keyword">try</span>! <span class="type">JSONSerialization</span>.jsonObject(with: data! <span class="keyword">as</span> <span class="type">Data</span>, options: <span class="type">JSONSerialization</span>.<span class="type">ReadingOptions</span>.allowFragments) <span class="keyword">as</span>? <span class="type">NSDictionary</span></div><div class="line">        </div><div class="line">    <span class="keyword">return</span> dic</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里的<br>JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.allowFragments)<br>方法是要求我们必须捕获一个异常的，我们这里代码中使用了一个 try! 关键字，这里还可以使用 try? 关键字。try? 会将错误转换为可选值，当调用 try? ＋函数或方法语句 的时候，如果函数或方法抛出错误，程序不会发崩溃，而返回一个nil，如果没有抛出错误则返回可选值，不会含有更多的造成特定的错误或者异常原因的信息。try! 打破了错误传播链条，但是如果真的发生错误就出现运行期错误，导致程序的崩溃。所以使用 try! 打破错误传播链条时，应该确保程序不会发生错误</p>
+<h1 id="9-Swift-项目中使用-CocoaPods"><a href="#9-Swift-项目中使用-CocoaPods" class="headerlink" title="9.Swift 项目中使用 CocoaPods"></a>9.Swift 项目中使用 CocoaPods</h1><p>Swift 项目中使用 Cocoapods 导入第三方库，导入的过程与 OC 项目无异，但是使用时，需要创建一个 Bridging-Header.h 桥接头文件，来实现 OC 与 Swift 混编<br><img src="http://upload-images.jianshu.io/upload_images/1393645-8fd9129efb896ad0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshot.png"><br>可以在Building Settings中自己设置桥接头文件</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1393645-e2e655391285c0e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshot 2.png"><br>这里有个简便方法生成这个桥接文件，就是我们在项目中创建一个 OC 文件，Xcode就会自动帮我们生成一个桥接头文件<br>有了头文件之后，我们只需要在桥接文件中导入我们需要使用的第三方库，就可以愉快的使用了~~~~</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1393645-b04706b707d455a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshot 3.png"></p>
+<h1 id="10-子类实现父类的代理方法"><a href="#10-子类实现父类的代理方法" class="headerlink" title="10.子类实现父类的代理方法"></a>10.子类实现父类的代理方法</h1><p>在这里，让我们首先看项目中的例子<br>我们声明了一个 BaseCollectionView 继承于 UICollectionView ，并将代理设置为自己<br><img src="http://upload-images.jianshu.io/upload_images/1393645-169020eb03fefbee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshot.png"><br>然后我们又声明了一个 PosterCollectionView 继承了BaseCollectionView<br><img src="http://upload-images.jianshu.io/upload_images/1393645-b245fda051861ade.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshot.png"><br>在 OC 中，我们想要在 PosterCollectionView 里实现 UICollectionView 的 delegate 方法，那么直接在子类 PosterCollectionView 中书写就可以了，但是在Swift中，我们需要在父类 BaseCollectionView 中实现，然后在子类 PosterCollectionView 中重写</p>
+<p>父类：<br><img src="http://upload-images.jianshu.io/upload_images/1393645-25cdf09067afd92c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshot.png"><br>子类：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1393645-b209ec1954c829e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshot.png"></p>
+<h1 id="11-Swift-中的-KVO"><a href="#11-Swift-中的-KVO" class="headerlink" title="11.Swift 中的 KVO"></a>11.Swift 中的 KVO</h1><p>Swift 中的 KVO 使用与 OC 相差不多，但是还是有一些坑点，下面我们只是简单的说一下<br>1.观察者和被观察者都必须是 NSObject 的子类，因为 OC 中 KVO 的实现基于 KVC 和 runtime 机制，只有是 NSObject 的子类才能利用这些特性<br>2.要观察的属性使用 @dynamic 修饰，表示该属性的存取都由 runtime 在运行时来决定，由于 Swift 基于效率的考量默认禁止了动态派发机制，因此要加上该修饰符来开启动态派发<br>这里是项目中的实现代码<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//被观察的属性，加dynamic关键字</span></div><div class="line"><span class="comment">//记录下标</span></div><div class="line"><span class="keyword">dynamic</span> <span class="keyword">var</span> currentIndex:<span class="type">Int</span> = <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//添加监听</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addObserver</span><span class="params">()</span></span> -&gt; <span class="type">Void</span> &#123;</div><div class="line">        </div><div class="line">        <span class="comment">//添加indexCollectionView的监听</span></div><div class="line">        indexCollectionView?.addObserver(<span class="keyword">self</span>, forKeyPath: <span class="string">"currentIndex"</span>, options: <span class="type">NSKeyValueObservingOptions</span>.new, context: <span class="literal">nil</span>)</div><div class="line">        </div><div class="line">        <span class="comment">//添加posterCollectionView的监听</span></div><div class="line">        posterCollectionView?.addObserver(<span class="keyword">self</span>, forKeyPath: <span class="string">"currentIndex"</span>, options: <span class="type">NSKeyValueObservingOptions</span>.new, context: <span class="literal">nil</span>)</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//观察者方法</span></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">observeValue</span><span class="params">(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)</span></span> &#123;</div><div class="line">        </div><div class="line">        <span class="comment">//变化后的值</span></div><div class="line">        <span class="keyword">let</span> index = change?[<span class="type">NSKeyValueChangeKey</span>.newKey] <span class="keyword">as</span>! <span class="type">Int</span></div><div class="line">        </div><div class="line">        <span class="comment">//创建indexPath</span></div><div class="line">        <span class="keyword">let</span> indexPath = <span class="type">IndexPath</span>(item: index, section: <span class="number">0</span>)</div><div class="line">        </div><div class="line">        <span class="comment">//判断是否是currenIndex属性</span></div><div class="line">        <span class="keyword">guard</span> keyPath == <span class="string">"currentIndex"</span> <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span></div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//判断对象的类型</span></div><div class="line">        <span class="keyword">if</span> object <span class="keyword">is</span> <span class="type">PosterCollectionView</span> &#123;</div><div class="line">            </div><div class="line">            <span class="comment">//滑动到指定单元格</span></div><div class="line">            indexCollectionView?.scrollToItem(at: indexPath, at: <span class="type">UICollectionViewScrollPosition</span>.centeredHorizontally, animated: <span class="literal">true</span>)</div><div class="line">            </div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> object <span class="keyword">is</span> <span class="type">IndexCollectionView</span>&#123;</div><div class="line">            </div><div class="line">            <span class="comment">//滑动到指定单元格</span></div><div class="line">            posterCollectionView?.scrollToItem(at: indexPath, at: <span class="type">UICollectionViewScrollPosition</span>.centeredHorizontally, animated: <span class="literal">true</span>)</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//变换标题</span></div><div class="line">        titleLabel?.text = dataList?[index].titleCn</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//销毁</span></div><div class="line">    <span class="keyword">deinit</span> &#123;</div><div class="line">        <span class="comment">//移除观察者</span></div><div class="line">        indexCollectionView?.removeObserver(<span class="keyword">self</span>, forKeyPath: <span class="string">"currentIndex"</span>)</div><div class="line">        posterCollectionView?.removeObserver(<span class="keyword">self</span>, forKeyPath: <span class="string">"currentIndex"</span>)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>这里注意一定要在析构函数中移除监听<br>如果你还对 Swift 中的 KVO 感兴趣的话，可以看一下这篇文章<br><a href="http://www.jianshu.com/p/e036e53d240e" target="_blank" rel="external">Swift: KVO 注意事项和属性观察器</a></p>
+<p>在最后，放上小项目的地址，还是那句话，说再多也不如自己敲一敲<br><a href="https://github.com/li1024316925/Swift-TimeMovie" target="_blank" rel="external">时光电影Swift版初学小项目</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
+</section>
+        
+      </div>
+      
+        <div align="center" style="margin-top: 30px;"><hr class="hr" style="margin:0px; height:3px;"></div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2018 LLQ’s Blog All Rights Reserved.</p>
+	      <p id="copyRightCn">LLQ 保留所有权利</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/li1024316925" class="mobile-nav-link">Categories</a>
+  
+    <a href="http://www.jianshu.com/u/605febdfa703" class="mobile-nav-link">Tags</a>
+  
+    <a href="/impress" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+
+
+  <script src="/js/home.js"></script>
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            LLQ’s Blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 LLQ All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+  
+</body>
+</html>
