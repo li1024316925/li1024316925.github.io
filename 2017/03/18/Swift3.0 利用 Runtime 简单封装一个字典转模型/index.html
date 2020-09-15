@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>swift3.0 利用runtime封装一个字典转模型 | LLQ’s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="iOS" />
+  
+  
+  
+  
+  <meta name="description" content="Swift下 利用 Runtime 封装一个字典转模型在通常的项目中，我们经常会用到字典转 model 的操作，我们可以使用系统的setValuesForKeys（Swift）setValuesForKeysWithDictionary（OC）方法来完成这一操作，但是这样就会遇到一个问题，如果我们数据字典其中的一个 key 与系统关键字重名，那我们在model中使用这个 key 作为属性就会报错，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift3.0 利用Runtime封装一个字典转模型">
+<meta property="og:url" content="http://yoursite.com/2017/03/18/Swift3.0 利用 Runtime 简单封装一个字典转模型/index.html">
+<meta property="og:site_name" content="LLQ’s Blog">
+<meta property="og:description" content="Swift下 利用 Runtime 封装一个字典转模型在通常的项目中，我们经常会用到字典转 model 的操作，我们可以使用系统的setValuesForKeys（Swift）setValuesForKeysWithDictionary（OC）方法来完成这一操作，但是这样就会遇到一个问题，如果我们数据字典其中的一个 key 与系统关键字重名，那我们在model中使用这个 key 作为属性就会报错，">
+<meta property="og:updated_time" content="2020-09-15T13:47:19.132Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift3.0 利用Runtime封装一个字典转模型">
+<meta name="twitter:description" content="Swift下 利用 Runtime 封装一个字典转模型在通常的项目中，我们经常会用到字典转 model 的操作，我们可以使用系统的setValuesForKeys（Swift）setValuesForKeysWithDictionary（OC）方法来完成这一操作，但是这样就会遇到一个问题，如果我们数据字典其中的一个 key 与系统关键字重名，那我们在model中使用这个 key 作为属性就会报错，">
+  
+    <link rel="alternate" href="/atom.xml" title="LLQ’s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/orange.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+</head>
+
+
+<body>
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="85px" height="85px" alt="Hike News" src="/css/images/orange.png">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">所有文章</a> </li>
+                
+                  <li> <a class="main-nav-link" href="https://github.com/li1024316925">GitHub</a> </li>
+                
+                  <li> <a class="main-nav-link" href="http://www.jianshu.com/u/605febdfa703">简书</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/impress">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Swift3.0 利用 Runtime 简单封装一个字典转模型" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Swift3.0 利用Runtime封装一个字典转模型
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/18/Swift3.0 利用 Runtime 简单封装一个字典转模型/" class="article-date">
+	  <time datetime="2017-03-18T05:03:04.000Z" itemprop="datePublished">2017-03-18</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Swift下-利用-Runtime-封装一个字典转模型"><a href="#Swift下-利用-Runtime-封装一个字典转模型" class="headerlink" title="Swift下 利用 Runtime 封装一个字典转模型"></a>Swift下 利用 Runtime 封装一个字典转模型</h1><p>在通常的项目中，我们经常会用到字典转 model 的操作，我们可以使用系统的<br><code>setValuesForKeys</code>（Swift）<br><code>setValuesForKeysWithDictionary</code>（OC）<br>方法来完成这一操作，但是这样就会遇到一个问题，如果我们数据字典其中的一个 key 与系统关键字重名，那我们在model中使用这个 key 作为属性就会报错，为了解决这一问题，我们会使用一些第三方库去完成字典转模型的操作，例如 MJExtension ，在这里，我们自己去封装一个简单的字典转模型，闲话不多说，我们马上开始。</p>
+<p>首先我们去创建一个 BaseModel 类，我们在这个根类中去实现一个可以字典转自身属性的构造方法，只要我们自定义的 model 都继承这个 BaseModel 那么我们的 model 就都能使用这个构造方法完成字典转模型的操作啦~</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseModel</span>: <span class="title">NSObject</span> </span>&#123; </div><div class="line">    <span class="comment">//自定义构造方法</span></div><div class="line">    <span class="keyword">init</span>(dic: [<span class="type">String</span>:<span class="type">Any</span>]) &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在，我们已经通过构造方法，拿到了数据字典，那么接下来我们只要将字典的键值对转换为我们自身的属性，就大功告成啦~<br>我们写一个新的方法，去完成这个操作<br>我们首先在这个方法中使用 Runtime 获取一下本类的所有属性</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setAttribut</span><span class="params">(dic: [String:Any])</span></span> -&gt; <span class="type">Void</span> &#123;</div><div class="line">        <span class="comment">//Runtime获取本类属性</span></div><div class="line">        <span class="keyword">var</span> <span class="built_in">count</span>:<span class="type">UInt32</span> = <span class="number">0</span></div><div class="line">        <span class="keyword">let</span> ivars = class_copyIvarList(<span class="keyword">self</span>.classForCoder, &amp;<span class="built_in">count</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后我们遍历这个获取到的属性数组，取出其中的元素，并获得属性名，这里值得注意的是，我们获得的属性名是 C 语言字符串，这里我们要转换一下变成 Swift 字符串</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="built_in">count</span> &#123;</div><div class="line">         <span class="comment">//取出属性名</span></div><div class="line">         <span class="keyword">let</span> ivar = ivars?[<span class="type">Int</span>(i)]</div><div class="line">         <span class="keyword">let</span> ivarName = ivar_getName(ivar!)</div><div class="line">         <span class="keyword">let</span> nName = <span class="type">String</span>(cString: ivarName!)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>进行到这一步，相信很多小伙伴已经明白其中的原理了，接下来，我们只要利用取到的属性名从我们的数据字典中取到相应的 value 然后赋值给我们的属性，我们的任务就完成了，但是这里，我们要解决我们刚开始遇到问题 “我们的属性名和字典的key值必须不相同怎么办？” 在这里我的解决办法是重新建立一个 model 属性与字典 key 值的映射关系，这里又写了一个建立映射的方法</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//如果属性名与数据字典的key值不对应，那么在子类model中复写此方法，将属性名作为key，字典key值作为value</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">attributesDic</span><span class="params">(dic: [String:Any])</span></span> -&gt; [<span class="type">String</span>:<span class="type">String</span>] &#123;</div><div class="line">        <span class="keyword">var</span> newDic:[<span class="type">String</span>:<span class="type">String</span>] = [:]</div><div class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> dic.keys &#123;</div><div class="line">            <span class="comment">//复写时注意将属性名作为key 数据字典的key作为value</span></div><div class="line">            newDic[key] = key</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> newDic</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>在这个 BaseModel 父类中，我们先让数据字典所有的 key 映射为 key 本身，这样我们在复写这个方法时只修改 key 与属性不对应的映射就可以了。<br><strong>这里有特别注意的一点，在复写时，我们一定要用 super 首先调用一下这个方法。</strong></p>
+<p>这样，我们的属性赋值方法就要修改了，我们要首先拿到数据字典的 key 与属性的全新映射关系</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setAttribut</span><span class="params">(dic: [String:Any])</span></span> -&gt; <span class="type">Void</span> &#123;</div><div class="line">        <span class="comment">//获得映射关系</span></div><div class="line">        <span class="keyword">let</span> attributDic = attributesDic(dic: dic)        </div><div class="line">        <span class="comment">//Runtime获取本类属性</span></div><div class="line">        <span class="keyword">var</span> <span class="built_in">count</span>:<span class="type">UInt32</span> = <span class="number">0</span></div><div class="line">        <span class="keyword">let</span> ivars = class_copyIvarList(<span class="keyword">self</span>.classForCoder, &amp;<span class="built_in">count</span>)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="built_in">count</span> &#123;</div><div class="line">            <span class="comment">//取出属性名</span></div><div class="line">            <span class="keyword">let</span> ivar = ivars?[<span class="type">Int</span>(i)]</div><div class="line">            <span class="keyword">let</span> ivarName = ivar_getName(ivar!)</div><div class="line">            <span class="keyword">let</span> nName = <span class="type">String</span>(cString: ivarName!)</div><div class="line">        &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样一来我们离成功就只差一步了！！<br>我们需要将取到的属性名通过全新的映射关系取到数据字典的 key ，然后利用这个 key 从数据字典取到 value 最后将 value 赋值给我们 model  的属性<br>最后，我们的属性赋值方法变成了这样</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setAttribut</span><span class="params">(dic: [String:Any])</span></span> -&gt; <span class="type">Void</span> &#123;</div><div class="line">        <span class="keyword">let</span> attributDic = attributesDic(dic: dic)</div><div class="line">        <span class="comment">//Runtime获取本类属性</span></div><div class="line">        <span class="keyword">var</span> <span class="built_in">count</span>:<span class="type">UInt32</span> = <span class="number">0</span></div><div class="line">        <span class="keyword">let</span> ivars = class_copyIvarList(<span class="keyword">self</span>.classForCoder, &amp;<span class="built_in">count</span>)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="built_in">count</span> &#123;</div><div class="line">            <span class="comment">//取出属性名</span></div><div class="line">            <span class="keyword">let</span> ivar = ivars?[<span class="type">Int</span>(i)]</div><div class="line">            <span class="keyword">let</span> ivarName = ivar_getName(ivar!)</div><div class="line">            <span class="keyword">let</span> nName = <span class="type">String</span>(cString: ivarName!)</div><div class="line">            <span class="comment">//取出要赋值的值</span></div><div class="line">            <span class="keyword">var</span> attribut = attributDic[nName]</div><div class="line">            <span class="keyword">if</span> attribut == <span class="literal">nil</span>&#123;</div><div class="line">                attribut = <span class="string">""</span></div><div class="line">            &#125;</div><div class="line">            <span class="keyword">var</span> value:<span class="type">NSObject</span></div><div class="line">            <span class="keyword">if</span> dic[attribut!] != <span class="literal">nil</span> &#123;</div><div class="line">                value = dic[attribut!] <span class="keyword">as</span>! <span class="type">NSObject</span></div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                value = <span class="string">""</span> <span class="keyword">as</span> <span class="type">NSObject</span></div><div class="line">            &#125;</div><div class="line">            <span class="comment">//利用KVC给本类的属性赋值</span></div><div class="line">            <span class="keyword">self</span>.setValue(value, forKey: nName)   </div><div class="line">        &#125;        </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h6><p>在我们自定义的初始化方法中调用一下</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//自定义构造方法</span></div><div class="line">    <span class="keyword">init</span>(dic: [<span class="type">String</span>:<span class="type">Any</span>]) &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</div><div class="line">        setAttribut(dic: dic)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>大功告成！！<br>这个封装好的 model 已经在我写的 Swift 小项目中得到了验证，这是项目地址<br><a href="https://github.com/li1024316925/Swift-TimeMovie" target="_blank" rel="external">时光电影Swift版初学小项目</a><br>本文如果有什么错误或者您有更好的方法，欢迎指出</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+	<div id="comment">
+	
+	<!-- 多说评论框 start -->
+	 <div class="ds-thread" data-thread-key="/2017/03/18/Swift3.0 利用 Runtime 简单封装一个字典转模型/" data-title="Swift3.0 利用Runtime封装一个字典转模型" data-url="http://yoursite.com/2017/03/18/Swift3.0 利用 Runtime 简单封装一个字典转模型/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"iTimeTraveler"};
+	  (function() {
+	    var ds = document.createElement('script');
+	    ds.type = 'text/javascript';ds.async = true;
+	    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	    ds.charset = 'UTF-8';
+	    (document.getElementsByTagName('head')[0] 
+	     || document.getElementsByTagName('body')[0]).appendChild(ds);
+	  })();
+	  </script>
+	<!-- 多说公共JS代码 end -->
+	
+	</div>
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/02/18/封装一个网络图片加载与缓存 Category/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">封装一个网络图片加载与缓存 Category</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Swift下-利用-Runtime-封装一个字典转模型"><span class="toc-number">1.</span> <span class="toc-text">Swift下 利用 Runtime 封装一个字典转模型</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#最后的最后"><span class="toc-number">1.0.0.0.0.1.</span> <span class="toc-text">最后的最后</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2020 LLQ’s Blog All Rights Reserved.</p>
+	      <p id="copyRightCn">LLQ 保留所有权利</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/li1024316925" class="mobile-nav-link">Categories</a>
+  
+    <a href="http://www.jianshu.com/u/605febdfa703" class="mobile-nav-link">Tags</a>
+  
+    <a href="/impress" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            LLQ’s Blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2020 LLQ All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+  
+</body>
+</html>
